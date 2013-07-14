@@ -72,11 +72,14 @@ print_board(board)
 print " \n \n \n Hidden"
 print_board(hiddenboard)
 
-target_row = input("Target Row:")-1
-target_col = input("Target Col:")-1
 current_tile = tileset['tile001']['title']  # later this will rotate as the tiles pop off the stack
-tileset['tile003']['title'] = 'tile003'
-board[target_row][target_col] = "X" # the title for the tile played is added to grid at the target location.
+
+def play_tile(current_tile):
+	target_row = input("Target Row:")-1
+	target_col = input("Target Col:")-1
+	#Mark an X on the visible board for where the user played:
+	board[target_row][target_col] = "X" # the title for the tile played is added to grid at the target location. 
+
 hiddenboard[target_row][target_col] = current_tile
 tileset[current_tile]['played'] = 'true' # mark the tile as played.
 current_tile = tileset['tile002']['title'] # Set the next tile as active
