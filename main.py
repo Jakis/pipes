@@ -56,8 +56,20 @@ def print_board(board):
     for row in board:       #for loop puts the rows in a grid format
         print " ".join(row)
 
+# gets x,y coords of a given tile.
+def find_tile(target_tile):
+	x = 0
+	for str in hiddenboard:
+		x += 1
+		if target_tile in str:
+			column_found = (str.index("tile001") + 1)
+			row_found = x
+			print "%s found at column : %s" % (target_tile, column_found)
+			print "%s found at row : %s" % (target_tile, row_found)
+
+print " \n \n \n Visible"
 print_board(board)
-print "printing hidden board"
+print " \n \n \n Hidden"
 print_board(hiddenboard)
 
 target_row = input("Target Row:")-1
@@ -75,19 +87,9 @@ print " \n \n \n Hidden"
 print_board(hiddenboard)
 
 
-# gets x coords of a tile
 target_tile = "tile001"
-x = 0
-for str in hiddenboard:
-	x += 1
-	if target_tile in str:
-		column_found = (str.index("tile001") + 1)
-		row_found = x
-		print "%s found at column : %s" % (target_tile, column_found)
-		print "%s found at row : %s" % (target_tile, row_found)
-		a = dir(tileset)
-		print a
-		print tileset[target_tile]
-		#print tileset[column_found][row_found]
-		#a = dir(str) #Useful for defining an object
-		#print a
+find_tile(target_tile)
+
+a = dir(tileset)
+print a
+print tileset[target_tile]
