@@ -67,21 +67,31 @@ def find_tile(target_tile):
 			print "%s found at column : %s" % (target_tile, column_found)
 			print "%s found at row : %s" % (target_tile, row_found)
 
-print " \n \n \n Visible"
-print_board(board)
-print " \n \n \n Hidden"
-print_board(hiddenboard)
-
-current_tile = tileset['tile001']['title']  # later this will rotate as the tiles pop off the stack
+def find_coord(x,y):
+	x -= 1
+	y -= 1
+	print hiddenboard[x][y]
 
 def play_tile(current_tile):
 	target_row = input("Target Row:")-1
 	target_col = input("Target Col:")-1
 	#Mark an X on the visible board for where the user played:
 	board[target_row][target_col] = "X" # the title for the tile played is added to grid at the target location. 
+	hiddenboard[target_row][target_col] = current_tile
+	tileset[current_tile]['played'] = 'true' # mark the tile as played.
 
-hiddenboard[target_row][target_col] = current_tile
-tileset[current_tile]['played'] = 'true' # mark the tile as played.
+Finished = False
+
+while Finished == False:
+	print " \n \n \n Visible"
+	print_board(board)
+	print " \n \n \n Hidden"
+	print_board(hiddenboard)
+	Finished = True
+
+current_tile = tileset['tile001']['title']  # later this will rotate as the tiles pop off the stack
+play_tile(current_tile)
+
 current_tile = tileset['tile002']['title'] # Set the next tile as active
 
 print " \n \n \n Visible"
@@ -92,7 +102,6 @@ print_board(hiddenboard)
 
 target_tile = "tile001"
 find_tile(target_tile)
-
-a = dir(tileset)
-print a
 print tileset[target_tile]
+
+find_coord(3,3)
